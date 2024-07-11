@@ -1,6 +1,6 @@
 <!-- markdown -->
 # Abusos Sexuales en Argentina (línea 137) 
-<P>Revisar Rama MASTER.</P>
+<P>El proyecto fue subido a la rama MASTER, si estas viendo esto es porque estas en la rama Main.</P>
 Bienvenido al repositorio del proyecto dobre los abusos sexuales en Argentina, más específicamente el repositorio contiene infomarción obtenida en la línea 137.
 
 ## Descripción
