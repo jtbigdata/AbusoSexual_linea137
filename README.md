@@ -1,13 +1,14 @@
 <!-- markdown -->
-# Abusos Sexuales en Argentina (línea 137).
+# Abusos Sexuales en Argentina (línea 137) 
+
 Bienvenido al repositorio del proyecto dobre los abusos sexuales en Argentina, más específicamente el repositorio contiene infomarción obtenida en la línea 137.
 
 ## Descripción
 Este repositorio contiene un conjunto de scripts para la limpieza de datos y visualización de una base de datos pública ((https://datos.gob.ar/dataset)).
 
 ## Contenido del Repositorio
-- [Data Clean]: Cuaderno Jupyter para limpieza de datos y análisis de datos.
-- [Dashboard]: Scrypt con visualizaciones de datos.
+- [Data Clean](https://github.com/jtbigdata/AbusoSexual_linea137/blob/master/Intervenciones137.ipynb): Cuaderno Jupyter para limpieza de datos y análisis de datos.
+- [Dashboard](https://github.com/jtbigdata/AbusoSexual_linea137/blob/master/Dash1.py): Scrypt con visualizaciones de datos.
 <!-- Agrega más elementos según sea necesario -->
 
 
