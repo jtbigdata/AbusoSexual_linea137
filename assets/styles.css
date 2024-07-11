@@ -1,0 +1,54 @@
+/* style.css */
+
+/* Estilo para el encabezado */
+/* Estilo para el encabezado con un color personalizado */
+.bg-custom-header {
+    background-color: rgba(145, 229, 255, 0.9); /* Cambia el color de fondo según tus preferencias */
+    color: #f11212f0; /* Color de texto para el encabezado */
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Estilos para las etiquetas y dropdowns */
+.label {
+    font-size: 0.6rem;
+    max-height: 12px;
+}
+
+/* Estilos para el dropdown */
+.dropdown {
+    width: 200px;
+    margin-bottom: 1rem;
+    font-family: 'Arial', sans-serif; /* Tipo de letra para el dropdown */
+    color: #f41a1a; /* Color del texto en el dropdown */
+    background-color: rgba(145, 229, 255, 0.9); /* Color de fondo del dropdown */
+}
+
+/* Estilos para las opciones del dropdown */
+.dropdown .Select-menu-outer .Select-option {
+    font-family: 'Arial', sans-serif; /* Tipo de letra para las opciones del dropdown */
+    color: #000; /* Color del texto de las opciones */
+    background-color: rgba(194, 26, 26, 0.9); /* Color de fondo de las opciones */
+}
+
+/* Estilo personalizado para el layout general */
+.custom-layout {
+    height: 550px; /* Altura deseada */
+    /* Otros estilos personalizados según tu diseño */
+}
+
+/* Estilos personalizados para los colores definidos dinámicamente */
+.custom-font {
+    font-family: Arial;
+    font-size: 12px;
+    color: rgba(3, 3, 3, 0.9);
+}
+
+.custom-plot-bg {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-paper-bg {
+    background-color: rgba(255, 255, 255, 0.9);
+}

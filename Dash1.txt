@@ -1,0 +1,128 @@
+"""
+****** Important! *******
+If you run this app locally, un-comment line 127 to add the theme change components to the layout
+"""
+
+from dash import Dash, dcc, html, Input, Output, State, callback, Patch, clientside_callback
+import plotly.express as px
+import plotly.io as pio
+import dash_bootstrap_components as dbc
+from dash_bootstrap_templates import ThemeChangerAIO, template_from_url
+import dash_ag_grid as dag
+import pandas as pd
+import os
+import json
+import plotly.io as pio
+import plotly.graph_objects as go
+from unidecode import unidecode
+import plotly.colors as pc
+
+
+df=pd.read_csv('data/datos2.csv')
+
+
+Vcat=['provincia_nombre','suicida_sexo','modalidad','tipo_lugar']
+Vtem=['suicida_edad','año']
+Vtem2=['mes','dias','hora']
+
+Vpro=['BUENOS AIRES','CIUDAD AUTONOMA DE BUENOS AIRES','TUCUMAN', 'TIERRA DEL FUEGO, ANTARTIDA E ISLAS DEL ATLANTICO SUR',
+ 'SANTIAGO DEL ESTERO', 'SANTA FE', 'SANTA CRUZ' ,'SAN LUIS' ,'SAN JUAN',
+ 'SALTA', 'RIO NEGRO', 'NEUQUEN', 'MISIONES', 'MENDOZA' ,'LA RIOJA' ,'LA PAMPA',
+ 'JUJUY', 'FORMOSA', 'ENTRE RIOS' ,'CORDOBA' ,'CORRIENTES','CHUBUT' ,'CHACO' ,'CATAMARCA',]
+
+
+# stylesheet with the .dbc class to style  dcc, DataTable and AG Grid components with a Bootstrap theme
+dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
+texto_style = {'fontSize': '0.6rem', 'maxHeight': '30px'}  # Modifica el valor de 'maxHeight' según el tamaño deseado
+dropdown_width = {'width': '130px'}  # Define el ancho deseado para los dropdowns
+dropdown_width2 = {'width': '130px'}  # Define el ancho deseado para los dropdowns
+
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc_css],suppress_callback_exceptions=True)
+
+#color_texto = pc.qualitative.Dark24[3]
+color_texto="rgba(255, 255, 255, 0.9)" 
+color_paper = "rgba(217, 217, 217, 0.1)" 
+color_plot="rgba(217, 217, 217, 0.1)" 
+
+
+# Definir tu propio tema personalizado
+custom_template = {
+    "layout": {
+        "font": {"family": "Arial","size": 12,"color": color_texto # Cambia el color del texto según tus preferencias
+                 },
+        "plot_bgcolor": color_plot,  # Cambia el color de fondo del gráfico
+        "paper_bgcolor": color_paper,    # Cambia el color de fondo del papel
+    }
+}
+
+# Asignar el tema personalizado como el tema predeterminado
+pio.templates["custom"] = custom_template
+pio.templates.default = "custom"
+
+
+color_header_bg = "rgba(0, 0, 255, 0.1)"  # Color de fondo del encabezado (rojo)
+color_header_text = "rgba(0, 0, 0, 1)"  # Color del texto del encabezado (negro)
+
+# Definir el encabezado con el color personalizado
+header = html.H4(
+    "Suicido en Argentina",
+    className="bg-danger text-black p-2 mb-2 text-center",
+    style={"backgroundColor": color_header_bg, "color": color_header_text}
+)
+
+#header = html.H4("Suicido en Argentina", className="bg-primary text-white p-2 mb-2 text-center")
+
+#======================Define los controladores TAB1======================================
+#======================Define los controladores TAB1======================================
+dropdown = html.Div(
+    [dbc.Label("Pie-Chart",style=texto_style),
+     dcc.Dropdown(Vcat,Vcat[0],id="indicador",
+                  clearable=False,style={**texto_style, **dropdown_width}),
+    ],className="mb-4",
+)
+
+dropdown1b = html.Div(
+    [dbc.Label("Bar-Chart",style=texto_style),
+     dcc.Dropdown(Vtem,Vtem[0],id="indicator1b",
+                  clearable=False,style={**texto_style, **dropdown_width}),
+    ],className="mb-4",
+)
+
+dropdown1c = html.Div(
+    [dbc.Label("Bar-Chart2",style=texto_style),
+     dcc.Dropdown(Vtem2,Vtem2[0],id="indicator1c",
+                  clearable=False,style={**texto_style, **dropdown_width}),
+    ],className="mb-4",
+)
+
+dropdown1d = html.Div(
+    [dbc.Label("Tab2-Map",style=texto_style),
+     dcc.Dropdown(Vpro,Vpro[0],id="indicator1d",
+                  clearable=False,style={**texto_style, **dropdown_width}),
+    ],className="mb-4",
+)
+
+
+control1=dbc.Card([dropdown,dropdown1b,dropdown1c,dropdown1d],body=True,)
+control =dbc.Col([control1], width=2)
+
+#Tab1
+#·············Definimos algunas funciones.......
+
+
+tab1 = dbc.Tab([dbc.Row(['Tab1'])],style={'height': '550px'},label="Tab 1")
+
+tab2=dbc.Tab([dbc.Row(['Tab2'])],style={'height': '550px'},label="Tab 2")
+
+tabs = dbc.Col( dbc.Card(dbc.Tabs([tab1,tab2])), width=10)
+
+
+app.layout = dbc.Container([header, dbc.Row([control,tabs,]),],
+                           fluid=True,className="dbc dbc-ag-grid",
+                           style={'height': '550px'}
+)
+
+
+if __name__ == "__main__":
+    app.run_server(debug=True)

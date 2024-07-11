@@ -1,0 +1,11 @@
+my_dashboard_project/
+│
+├── assets/
+│   └── styles.css
+│
+├── functions.py
+│
+├── app.py
+│
+└── data/
+    └── dataset.csv

@@ -1,0 +1,28 @@
+
+
+@callback([Output("out2", "figure"),Output("out2b", "figure"),Output("out2c", "figure"),Output("out2d", "figure") ], 
+          [Input("in2", "value"),Input("in2b", "value"),Input("in1", "value"),Input("in1b", "value"),Input("in1c", "value")])
+
+        # Gráfico figc (Area chart)
+    print('uno',inputii, inputi)
+    c1 = functions.F3(inputdf, inputii, in2b)
+    c2 = functions.F1(inputdf, inputii)
+    c3 = c1.merge(c2, on=inputii, how='right')
+    c3['Delta'] = c3[f'{in2b}(%)'] - c3['porcentaje']
+    #p
+    ci=functions.F5(c3,inputii, in2b,0)
+    if inputii=='GrupoEdad':
+        orden1=functions.ord1
+        ci[inputii] = pd.Categorical(ci[inputii], categories=orden1, ordered=True)
+        ci = ci.sort_values(inputii)
+    if inputii=='Año':
+        orden2=functions.ord2
+        ci[inputii] = pd.Categorical(ci[inputii], categories=orden2, ordered=True)
+        ci = ci.sort_values(inputii)
+    
+    
+    #ci = ci[~ci[in2b].isin(Lista3)]
+    figc = px.area(ci, x=inputii, y="Delta",color=in2b, color_discrete_map=color_map #color_discrete_sequence=[color_fixed]
+                   )
+
+    return
